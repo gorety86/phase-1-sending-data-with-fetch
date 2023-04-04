@@ -1,28 +1,22 @@
-const submitData = {
-  Name: "Doreen",
-  Email: "doreen@gmail.com",
-};
-const configurationObject = {
-  method: "POST",
-  headers: {
-    "Content-Type": "application/json",
-    Accept: "application/json",
-  },
-  body: JSON.stringify({submitData}),
-};
-function submitData() {
-  fetch(`http://localhost:3000/users`, configurationObject)
-  .then(function (response) {
-    return response.json();})
-  .then(function (object) {
-    console.log(object);
+function submitData(name, email) {
+  return fetch(`http://localhost:3000/users`,{
+    method: "POST",
+    headers: {"Content-Type": "application/json",
+    Accept: "application/json",},
+    body: JSON.stringify({name, email})
+
   })
-    .catch(function(error) {
-      alert("message");
-      console.log(error.message);
-    });
-  
-};
+  .then(function (response) {
+    return response.json();
+  })
+  .then(function (object) {
+    document.body.innerHTML = object["id"]
+  })
+  .catch(function (error) {
+    document.body.innerHTML = error.message
+  })}
+
+
 
 
   
